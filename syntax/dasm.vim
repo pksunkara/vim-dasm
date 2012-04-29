@@ -25,11 +25,11 @@ syn keyword dasmTodo NOTE TODO FIXME XXX contained
 syn case ignore
 
 " Syntax: Labels {{{2
-syn match dasmLabel      "^:[A-Z_][A-Z0-9_]*"
-syn match dasmSubLabel   "^:\.[A-Z_][A-Z0-9_]*"
+syn match dasmLabel      "^:[a-zA-Z$_][a-zA-Z0-9$@_.]*"
+syn match dasmSubLabel   "^:\.[a-zA-Z$_][a-zA-Z0-9$@_.]*"
 
 " any valid identifier
-syn match dasmIdentifier "[a-z_][a-z0-9_]*"
+syn match dasmIdentifier "[a-zA-Z$_.][a-zA-Z0-9$@_.]*"
 
 " Syntax: Numbers {{{2
 " octal {{{3
@@ -62,11 +62,10 @@ syn keyword dasmRegister a b c x y z i j sp pc ex ia pop peek push pick
 syn keyword dasmOpcode  set add sub mul mli div dvi mod mdi and bor xor
 syn keyword dasmOpcode  shr asr shl ifb ifc ife ifn ifg ifa ifl ifu
 syn keyword dasmOpcode  adx sbx sti std
-
-syn keyword dasmOpcode  jsr int iag ias rfi iaq hwn hwq hwi
+syn keyword dasmOpcode  jsr int iag ias rfi iaq hwn hwq hwi hcf
 
 " Syntax: Directive {{{2
-syn keyword dasmDirective       word
+syn keyword dasmDirective       dat word
 
 " Define the default highlighting. {{{1
 " For version 5.7 and earlier: only when not done already
@@ -85,8 +84,6 @@ if version >= 508 || !exists("did_dasm_syntax_inits")
 
   HiLink dasmLabel              Function
   HiLink dasmSubLabel           Label
-
-  HiLink dasmIdentifier         Function
 
   HiLink dasmString             String
   HiLink dasmASCII              Character
